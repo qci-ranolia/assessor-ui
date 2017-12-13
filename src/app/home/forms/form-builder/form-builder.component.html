@@ -1,0 +1,71 @@
+<div class="demo-card-square mdl-card ">
+  <div *ngIf='display'  class="mdl-card__title ">
+    <h2 class="mdl-card__title-text">{{formDetails.project}}</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <b>{{formDetails.name}}</b>
+  </div>
+  <div class="mdl-card__actions mdl-card--border formBoxHeight">
+
+    <div *ngFor='let json of jsonArray; let i = index'>
+
+      <div *ngIf="json.type == 'text'" >
+        <app-input-text [json]=json ></app-input-text>
+      </div>
+
+      <div *ngIf="json.type == 'password'" >
+        <app-input-password [json]=json ></app-input-password>
+      </div>
+
+      <div *ngIf="json.type == 'email'" >
+        <app-input-email [json]=json ></app-input-email>
+      </div>
+
+      <div *ngIf="json.type == 'number'" >
+        <app-input-number [json]=json ></app-input-number>
+      </div>
+
+      <div *ngIf="json.type == 'phone'" >
+        <app-input-phone [json]=json ></app-input-phone>
+      </div>
+
+      <div *ngIf="json.type == 'textarea'" >
+        <app-input-textarea [json]=json ></app-input-textarea>
+      </div>
+
+      <div *ngIf="json.type == 'date'" >
+        <app-input-date [json]=json ></app-input-date>
+      </div>
+
+      <div *ngIf="json.type == 'time'" >
+        <app-input-time [json]=json ></app-input-time>
+      </div>
+
+      <div *ngIf="json.type == 'radio'" >
+        <app-input-radio [json]=json ></app-input-radio>
+      </div>
+
+      <div *ngIf="json.type == 'checkbox'" >
+        <app-input-checkbox [json]=json ></app-input-checkbox>
+      </div>
+
+      <div *ngIf="json.type == 'dropdown'" >
+        <app-input-dropdown [json]=json ></app-input-dropdown>
+      </div>
+
+      <div *ngIf="json.type == 'slider'" >
+        <app-input-slider [json]=json ></app-input-slider>
+      </div>
+
+      <div *ngIf="json.type == 'file'" >
+        <app-input-file [json]=json ></app-input-file>
+      </div>
+
+      <div *ngIf="json.type == 'break'" >
+        <app-input-break [json]=json ></app-input-break>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,3 +1,30 @@
-<p>
-  dashboard works!
-</p>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+            mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <div class="mdl-layout-spacer"></div>
+      <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">more_vert</i>
+      </button>
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+          for="demo-menu-lower-right">
+        <li class="mdl-menu__item">Some Action</li>
+        <li class="mdl-menu__item">Another Action</li>
+      </ul>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer mdl-shadow--4dp">
+    <span class="mdl-layout-title">QCI - Collect</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" [routerLink]="['']">Home</a>
+      <a class="mdl-navigation__link" href="">Link 2</a>
+      <a class="mdl-navigation__link" href="">Link 3</a>
+      <a class="mdl-navigation__link" href="">Link 4</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content commonProp " >
+
+    <router-outlet></router-outlet>
+
+  </main>
+</div>

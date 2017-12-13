@@ -1,0 +1,10 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col">{{json.name}}</div>
+  <div class="mdl-cell mdl-cell--8-col">
+    <div *ngFor='let opt of json.option; let i=i' >
+
+      <input #flag type="checkbox" value={{opt}} name="checkbox" > {{opt}}
+
+    </div>
+  </div>
+</div>

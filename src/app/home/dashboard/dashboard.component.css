@@ -1,0 +1,15 @@
+.infoBox{
+  height:200px;
+  background-color: lightgray;
+  max-width:400px;
+  min-width:300px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.infoGraph{
+  height:100px;
+  background-color: lightgray;
+}
+.commonProp{
+  background-color: #f7f7f7;
+}

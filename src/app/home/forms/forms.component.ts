@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { ProjectService } from '../../service/ProjectService';
 
 @Component({
   selector: 'app-forms',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormsComponent implements OnInit {
 
-  constructor() { }
+  fcid : any;
+
+  constructor(private projectService: ProjectService, private route: Router, private activatedRoute: ActivatedRoute) {
+    this.projectService.emitFormElement.subscribe((res)=>{
+      // console.log(res);
+    });
+
+  }
 
   ngOnInit() {
+    let sub = this.activatedRoute.queryParams.subscribe(params=>{
+        this.fcid = params.id;
+        // console.log(this.fcid);
+        this.projectService.getFormByCid(this.fcid);
+    });
   }
+
+
 
 }

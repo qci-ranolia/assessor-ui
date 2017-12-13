@@ -1,0 +1,14 @@
+.demo-card-square.mdl-card {
+  width: 100%;
+  height: 100%;
+}
+.demo-card-square > .mdl-card__title {
+  color: gray;
+  /*background:
+    url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;*/
+}
+.formBoxHeight {
+  min-height: 73vh;
+  max-height: 73vh;
+  overflow-y: auto;
+}
