@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-input-break',
@@ -8,6 +8,8 @@ import { Component, OnInit,Input } from '@angular/core';
 export class InputBreakComponent implements OnInit {
 
   @Input() json:any;
+  @Output() renponseData = new EventEmitter<any>();
+  
   constructor() { }
 
   ngOnInit() {

@@ -1,9 +1,18 @@
 <div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--2-col">{{json.name}}</div>
+  <div class="mdl-cell mdl-cell--4-col"> {{funID(id)}} . {{json.name}}
+    <span  *ngIf="json.helptext" class="mdl-badge" data-badge="i" id="Tsample{{funID(id)}}"  ></span>
+    <label class="mdl-tooltip mdl-tooltip--large" for="Tsample{{funID(id)}}">{{json.helptext}}</label>
+
+  </div>
+
   <div class="mdl-cell mdl-cell--8-col">
     <div *ngFor='let opt of json.option; let i=i' >
 
-      <input #flag type="checkbox" value={{opt}} name="checkbox" > {{opt}}
+
+      <label class = "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+         <input #flag type = "checkbox"  class = "mdl-checkbox__input" name="checkbox" value={{opt}} (change)='getVal(flag.checked,opt)' [checked]='checkVal(opt)' >
+         <span class = "mdl-checkbox__label">{{opt}}</span>
+      </label>
 
     </div>
   </div>

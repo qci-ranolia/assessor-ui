@@ -28,5 +28,8 @@ export class FormListingComponent implements OnInit {
     }, 100);
   }
 
+  ngAfterViewInit() {
+    componentHandler.upgradeDom();
+  }
 
 }

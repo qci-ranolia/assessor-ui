@@ -27,6 +27,8 @@ export class FormsComponent implements OnInit {
     });
   }
 
-
+  ngAfterViewInit() {
+    componentHandler.upgradeDom();
+  }
 
 }

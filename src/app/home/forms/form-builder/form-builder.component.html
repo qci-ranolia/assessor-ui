@@ -10,62 +10,74 @@
     <div *ngFor='let json of jsonArray; let i = index'>
 
       <div *ngIf="json.type == 'text'" >
-        <app-input-text [json]=json ></app-input-text>
+        <app-input-text [json]=json  id={{i}} (responseData)="responseData($event)"></app-input-text>
       </div>
 
       <div *ngIf="json.type == 'password'" >
-        <app-input-password [json]=json ></app-input-password>
+        <app-input-password [json]=json id={{i}} (responseData)="responseData($event)"></app-input-password>
       </div>
 
       <div *ngIf="json.type == 'email'" >
-        <app-input-email [json]=json ></app-input-email>
+        <app-input-email [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-email>
       </div>
 
       <div *ngIf="json.type == 'number'" >
-        <app-input-number [json]=json ></app-input-number>
+        <app-input-number [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-number>
       </div>
 
       <div *ngIf="json.type == 'phone'" >
-        <app-input-phone [json]=json ></app-input-phone>
+        <app-input-phone [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-phone>
       </div>
 
       <div *ngIf="json.type == 'textarea'" >
-        <app-input-textarea [json]=json ></app-input-textarea>
+        <app-input-textarea [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-textarea>
       </div>
 
       <div *ngIf="json.type == 'date'" >
-        <app-input-date [json]=json ></app-input-date>
+        <app-input-date [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-date>
       </div>
 
       <div *ngIf="json.type == 'time'" >
-        <app-input-time [json]=json ></app-input-time>
+        <app-input-time [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-time>
       </div>
 
       <div *ngIf="json.type == 'radio'" >
-        <app-input-radio [json]=json ></app-input-radio>
+        <app-input-radio [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-radio>
       </div>
 
       <div *ngIf="json.type == 'checkbox'" >
-        <app-input-checkbox [json]=json ></app-input-checkbox>
+        <app-input-checkbox [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-checkbox>
       </div>
 
       <div *ngIf="json.type == 'dropdown'" >
-        <app-input-dropdown [json]=json ></app-input-dropdown>
+        <app-input-dropdown [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-dropdown>
       </div>
 
       <div *ngIf="json.type == 'slider'" >
-        <app-input-slider [json]=json ></app-input-slider>
+        <app-input-slider [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-slider>
       </div>
 
       <div *ngIf="json.type == 'file'" >
-        <app-input-file [json]=json ></app-input-file>
+        <app-input-file [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-file>
       </div>
 
       <div *ngIf="json.type == 'break'" >
-        <app-input-break [json]=json ></app-input-break>
+        <br>
+        <div class="mdl-cell mdl-cell--11-col sectionBreak "  > <b class="backgroundColorClass"> {{json.name}} </b></div>
+        <br>
       </div>
 
     </div>
+
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col" style="margin: auto;">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+         <b>Submit  <i class="material-icons">send</i></b>
+        </button>
+      </div>
+    </div>
+
+
 
   </div>
 </div>

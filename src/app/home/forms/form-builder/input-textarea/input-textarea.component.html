@@ -1,11 +1,14 @@
 <div class="mdl-grid">
 
   <div class="mdl-cell mdl-cell--8-col">
-
+    {{funID(id)}} .
     <div class="mdl-textfield mdl-js-textfield">
-      <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" ></textarea>
+      <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5"  (change)="getVal()" [(ngModel)]='value'></textarea>
       <label class="mdl-textfield__label" for="sample5">{{json.name}}</label>
     </div>
+
+    <span  *ngIf="json.helptext"  class="mdl-badge" data-badge="i" id="Tsample{{funID(id)}}"  ></span>
+    <label class="mdl-tooltip mdl-tooltip--large" for="Tsample{{funID(id)}}">{{json.helptext}}</label>
 
   </div>
 

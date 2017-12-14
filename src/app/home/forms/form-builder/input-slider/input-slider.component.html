@@ -1,11 +1,25 @@
 <div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--2-col">{{json.name}}</div>
-  <div class="mdl-cell mdl-cell--8-col">
+  <div class="mdl-cell mdl-cell--4-col">{{funID(id)}} . {{json.name}}
+    <span  *ngIf="json.helptext" class="mdl-badge" data-badge="i" id="Tsample{{funID(id)}}"  ></span>
+    <label class="mdl-tooltip mdl-tooltip--large" for="Tsample{{funID(id)}}">{{json.helptext}}</label>
+
+  </div>
+  <div class="mdl-cell mdl-cell--6-col">
     <!-- <form oninput="x.value=parseInt(a.value)" >
       {{rangeFrom}}<input class=" form-control-sm"  type="range"  min={{rangeFrom}} max={{rangeTo}} id="a" (change)='getVal()'  >{{rangeTo}}
 
      &nbsp; &nbsp; value =  <output #val name="x" for="a " > {{value}} </output>
 
     </form> -->
+    <form oninput="x.value=parseInt(a.value)">
+
+      {{json.rangeFrom}} to {{json.rangeTo}}
+      <input id = "slider2" class = "mdl-slider mdl-js-slider" type = "range"
+              min = {{json.rangeFrom}} max = {{json.rangeTo}} id="a" (change)='getVal()'>
+
+
+      &nbsp; &nbsp; value =  <output #val name="x" for="a " > {{json.value}} </output>
+
+    </form>
   </div>
 </div>

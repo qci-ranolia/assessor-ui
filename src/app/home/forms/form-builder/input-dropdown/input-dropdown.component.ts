@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-input-dropdown',
@@ -8,10 +8,24 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InputDropdownComponent implements OnInit {
 
   @Input() json:any;
-  
+  @Input() id: any;
+  @Output() responseData = new EventEmitter<any>();
+
+  selectedValue: any;
+
   constructor() { }
 
   ngOnInit() {
+    this.selectedValue = this.json.value;
+  }
+
+  funID(id) {
+    return (parseInt(id)+1);
+  }
+
+  getVal() {
+    this.json.value = this.selectedValue;
+    this.responseData.emit(this.json);
   }
 
 }

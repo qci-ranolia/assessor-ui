@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-input-radio',
@@ -8,10 +8,21 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InputRadioComponent implements OnInit {
 
   @Input() json:any;
-  
+  @Input() id: any;
+  @Output() responseData = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  funID(id) {
+    return (parseInt(id)+1);
+  }
+
+  getVal(opt) {
+    console.log(opt);
+    this.json.value = opt;
+    this.responseData.emit(this.json);
+  }
 }

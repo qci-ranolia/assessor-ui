@@ -12,3 +12,14 @@
   max-height: 73vh;
   overflow-y: auto;
 }
+.sectionBreak{
+  margin: auto;
+  height:18px;
+  text-align: center;
+  color: #424242;
+  background-color: #ffd740;
+  background: #ffd740 !important;
+}
+.backgroundColorClass{
+  background: #ffd740 !important;
+}

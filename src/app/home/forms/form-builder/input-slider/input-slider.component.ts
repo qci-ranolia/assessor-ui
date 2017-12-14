@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-input-slider',
@@ -8,10 +9,27 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InputSliderComponent implements OnInit {
 
   @Input() json:any;
-  
-  constructor() { }
+  @Input() id: any;
+  @Output() responseData = new EventEmitter<any>();
+
+  val:any;
+  @ViewChild('val') output;
+
+  constructor() {}
 
   ngOnInit() {
+    this.val = this.json.value;
+  }
+
+  funID(id) {
+    return (parseInt(id)+1);
+  }
+
+  getVal() {
+
+    this.json.value = this.output.nativeElement.value;
+    this.responseData.emit(this.json);
+
   }
 
 }
