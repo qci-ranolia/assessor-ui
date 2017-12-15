@@ -1,13 +1,20 @@
 <div class="mdl-grid">
 
-  <div class="mdl-cell mdl-cell--8-col">
-    {{funID(id)}} .
+  <div class="mdl-cell mdl-cell--12-col">
+    {{funID(id)}} . {{json.name}}   <span  *ngIf="json.required" class=" requiredMsg"><b> * </b> </span>
+
+    <br>
     <div class="mdl-textfield mdl-js-textfield">
       <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5"  (change)="getVal()" [(ngModel)]='value'></textarea>
-      <label class="mdl-textfield__label" for="sample5">{{json.name}}</label>
+      <label class="mdl-textfield__label" ></label>
     </div>
 
-    <span  *ngIf="json.helptext"  class="mdl-badge" data-badge="i" id="Tsample{{funID(id)}}"  ></span>
+    <span *ngIf="json.helptext" class="mdl-badge" data-badge="i" id="Tsample{{funID(id)}}"  ></span>
+
+    <span *ngIf='json.errorMsg' class="mdl-chip  margin-top-prop">
+        <span class="mdl-chip__text errorMsg"><b>  # {{json.errorMsg}} </b> </span>
+    </span>
+
     <label class="mdl-tooltip mdl-tooltip--large" for="Tsample{{funID(id)}}">{{json.helptext}}</label>
 
   </div>

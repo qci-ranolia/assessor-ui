@@ -31,6 +31,7 @@ export class InputCheckboxComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.json.value = this.json.values;
     this.resultArray= this.json.values;
   }
 

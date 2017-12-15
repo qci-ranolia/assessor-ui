@@ -11,22 +11,22 @@ export class ProjectService {
   emitFormCard = new EventEmitter<any>();
 
   demoform: any = [
-    {"type":"text","required":false,"name":"Text0", "helptext":"Some help text goes here","cid":"1"},
-    {"type":"text","required":false,"name":"Text","cid":"2"},
-    {"type":"password","required":false,"hepltext":"","name":"password","cid":"3"},
-    {"type":"email","required":false,"hepltext":"","name":"email","cid":"4"},
-    {"type":"number","required":false,"hepltext":"","name":"number","rangeFrom":0,"rangeTo":100,"value":"","cid":"5"},
-    {"type":"phone","required":false,"hepltext":"","name":"Phone","rangeFrom":"","rangeTo":"","value":"","cid":"6"},
-    {"type":"textarea","required":false,"hepltext":"","name":"TextArea","rangeFrom":"","rangeTo":"","value":"","cid":"7"},
-    {"type":"date","required":false,"hepltext":"","name":"Date","rangeFrom":"2017-12-01","rangeTo":"2017-12-31","value":"","cid":"8"},
-    {"type":"time","required":false,"hepltext":"","name":"Time","rangeFrom":"00:00","rangeTo":"09:09","value":"","cid":"9"},
-    {"type":"radio","required":false,"hepltext":"","name":"radio","rangeFrom":"","rangeTo":"","value":"input2","option":["input1","input2"],"cid":"10"},
-    {"type":"checkbox","required":false,"hepltext":"","name":"Checkbox","rangeFrom":"","rangeTo":"","value":"","option":["1","2","3","4"],"values":["1","2"],"cid":"11"},
-    {"type":"dropdown","required":false,"hepltext":"","name":"Dropdown","rangeFrom":"","rangeTo":"","value":"2","option":["1","2","3","4"],"values":["1","2"],"cid":"12"},
-    {"type":"slider","required":false,"hepltext":"","name":"Slider","rangeFrom":0,"rangeTo":66,"value":33,"option":"","values":["1","2"],"cid":"13"},
-    {"type":"file","required":false,"hepltext":"","name":"File Input","rangeFrom":"","rangeTo":"","value":"","option":"","values":["1","2"],"fileTypes":[".png",".doc",".pdf"],"cid":"14"},
-    {"type":"location","required":false,"hepltext":"","name":"","rangeFrom":"","rangeTo":"","value":"","option":"","values":["1","2"],"fileTypes":"","cid":"15"},
-    {"type":"break","required":false,"hepltext":"","name":"Section Break","rangeFrom":"","rangeTo":"","value":"","option":"","values":["1","2"],"fileTypes":"","cid":"16"}
+    {"type":"text","required":true,"name":"Text0", "helptext":"Some help text goes here","cid":"1","value":""},
+    {"type":"text","required":true,"name":"Text","cid":"2", "helptext":"Some help text goes here","value":""},
+    {"type":"password","required":true, "helptext":"Some help text goes here","name":"password","cid":"3","value":""},
+    {"type":"email","required":true, "helptext":"Some help text goes here","name":"email","cid":"4","value":""},
+    {"type":"number","required":true, "helptext":"Some help text goes here","name":"number","rangeFrom":0,"rangeTo":100,"value":"","cid":"5"},
+    {"type":"phone","required":true, "helptext":"Some help text goes here","name":"Phone","rangeFrom":"","rangeTo":"","value":"","cid":"6"},
+    {"type":"textarea","required":true, "helptext":"Some help text goes here","name":"TextArea","rangeFrom":"","rangeTo":"","value":"","cid":"7"},
+    {"type":"date","required":true, "helptext":"Some help text goes here","name":"Date","rangeFrom":"2017-12-01","rangeTo":"2017-12-31","value":"","cid":"8"},
+    {"type":"time","required":true, "helptext":"Some help text goes here","name":"Time","rangeFrom":"00:00","rangeTo":"09:09","value":"","cid":"9"},
+    {"type":"radio","required":true, "helptext":"Some help text goes here","name":"radio","rangeFrom":"","rangeTo":"","value":"input2","option":["input1","input2"],"cid":"10"},
+    {"type":"checkbox","required":true, "helptext":"Some help text goes here","name":"Checkbox","rangeFrom":"","rangeTo":"","value":"","option":["1","2","3","4"],"values":["1","2"],"cid":"11"},
+    {"type":"dropdown","required":true, "helptext":"Some help text goes here","name":"Dropdown","rangeFrom":"","rangeTo":"","value":"2","option":["1","2","3","4"],"values":["1","2"],"cid":"12"},
+    {"type":"slider","required":true, "helptext":"Some help text goes here","name":"Slider","rangeFrom":0,"rangeTo":66,"value":33,"option":"","values":["1","2"],"cid":"13"},
+    {"type":"file","required":true, "helptext":"Some help text goes here","name":"File Input","rangeFrom":"","rangeTo":"","value":"","option":"","values":["1","2"],"fileTypes":[".png",".doc",".pdf"],"cid":"14"},
+    {"type":"location","required":true, "helptext":"Some help text goes here","name":"","cid":"15"},
+    {"type":"break","required":true, "helptext":"Some help text goes here","name":"Section Break","cid":"16"}
   ] ;
 
   formArray = [

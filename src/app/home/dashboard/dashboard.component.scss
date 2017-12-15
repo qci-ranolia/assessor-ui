@@ -1,0 +1,29 @@
+@import "~styles.scss";
+
+/*$primary-color: #2196f3;
+$primary-text: #fff;
+$accent-color: #ffd740;
+$accent-text: gray;*/
+
+.infoBox{
+  height:200px;
+  background-color: lightgray;
+  max-width:400px;
+  min-width:300px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.infoGraph{
+  height:100px;
+  background-color: lightgray;
+}
+.commonProp{
+  background-color: #f7f7f7;
+}
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link:hover {
+    background-color: $accent-color !important;
+    color: $accent-text  !important;
+}
+.mdl-navigation__link {
+  color: $primary-text !important;
+}

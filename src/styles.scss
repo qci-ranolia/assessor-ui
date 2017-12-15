@@ -1,4 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+$primary-color: #2196f3;
+$primary-text: #fff;
+$accent-color: #ffd740;
+$accent-text: gray;
+
 body{
   color: #545454;
+}
+
+.errorMsg{
+  color: red;
+  font-size: .9rem;
+}
+.requiredMsg{
+  color: $primary-color;
+  font-size: .9rem;
+
+}
+.margin-top-prop {
+  margin-top: -15px !important;
+}
+.marginAuto{
+  margin: auto !important;
+  padding: auto !important;
+}
+.mdl-textfield{
+  width: 90% !important;
 }

@@ -3,8 +3,18 @@
     <h2 class="mdl-card__title-text">{{formDetails.project}}</h2>
   </div>
   <div class="mdl-card__supporting-text">
-    <b>{{formDetails.name}}</b>
+    <b>{{formDetails.name}}</b> &nbsp;  &nbsp;  &nbsp;
+
+    <span *ngIf='formError' class="mdl-chip" style="float : right; margin-top: -15px" >
+        <span class="mdl-chip__text errorMsg"><b> # Invalid input/s detected!</b> </span>
+    </span>
+
+    <span style="float : right; margin-top: -15px"  class="mdl-chip margin-top-prop">
+        <span class="mdl-chip__text requiredMsg"><b> * Required </b> </span>
+    </span>
+
   </div>
+
   <div class="mdl-card__actions mdl-card--border formBoxHeight">
 
     <div *ngFor='let json of jsonArray; let i = index'>
@@ -71,13 +81,11 @@
 
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--12-col" style="margin: auto;">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" (click)='saveFormReaponce()'>
          <b>Submit  <i class="material-icons">send</i></b>
         </button>
       </div>
     </div>
-
-
-
   </div>
+
 </div>

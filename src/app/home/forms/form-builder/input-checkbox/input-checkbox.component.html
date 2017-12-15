@@ -1,19 +1,24 @@
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--4-col"> {{funID(id)}} . {{json.name}}
+<div class="mdl-grid  ">
+  <div class="mdl-cell mdl-cell--4-col "> {{funID(id)}} . {{json.name}} <span  *ngIf="json.required" class=" requiredMsg"><b> * </b> </span>
     <span  *ngIf="json.helptext" class="mdl-badge" data-badge="i" id="Tsample{{funID(id)}}"  ></span>
     <label class="mdl-tooltip mdl-tooltip--large" for="Tsample{{funID(id)}}">{{json.helptext}}</label>
 
   </div>
 
-  <div class="mdl-cell mdl-cell--8-col">
+  <div class="mdl-cell mdl-cell--8-col marginAuto">
     <div *ngFor='let opt of json.option; let i=i' >
 
 
       <label class = "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
          <input #flag type = "checkbox"  class = "mdl-checkbox__input" name="checkbox" value={{opt}} (change)='getVal(flag.checked,opt)' [checked]='checkVal(opt)' >
-         <span class = "mdl-checkbox__label">{{opt}}</span>
+         <span class = "mdl-checkbox__label"> {{opt}}</span>
       </label>
 
     </div>
+
+    <span *ngIf='json.errorMsg' class="mdl-chip  margin-top-prop">
+        <span class="mdl-chip__text errorMsg"><b>  # {{json.errorMsg}} </b> </span>
+    </span>
+
   </div>
 </div>

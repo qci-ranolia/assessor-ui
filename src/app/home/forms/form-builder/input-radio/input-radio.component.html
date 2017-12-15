@@ -1,6 +1,6 @@
 <div class="mdl-grid">
 
-  <div class="mdl-cell mdl-cell--4-col"> {{funID(id)}} . {{json.name}}
+  <div class="mdl-cell mdl-cell--4-col"> {{funID(id)}} . {{json.name}} <span  *ngIf="json.required" class=" requiredMsg"><b> * </b> </span>
     <span  *ngIf="json.helptext" class="mdl-badge" data-badge="i" id="Tsample{{funID(id)}}"  ></span>
     <label class="mdl-tooltip mdl-tooltip--large" for="Tsample{{funID(id)}}">{{json.helptext}}</label>
 
@@ -9,11 +9,23 @@
     <div *ngFor='let opt of json.option; let i=i' (change)='getVal(opt)'>
 
       <label class = "mdl-radio mdl-js-radio mdl-js-ripple-effect" >
-        <input type = "radio" class = "mdl-radio__button" value={{opt}}   name="radiogroup"  [checked]='opt == value'>
+        <input type = "radio" class = "mdl-radio__button" value={{opt}}   name="radiogroup"  [checked]='opt == json.value'>
         <span class = "mdl-radio__label">{{opt}}</span>
       </label>
 
     </div>
+
+    <span *ngIf='json.errorMsg' class="mdl-chip  margin-top-prop">
+        <span class="mdl-chip__text errorMsg"><b>  # {{json.errorMsg}} </b> </span>
+    </span>
+
   </div>
+
+</div>
+
+
+<div *ngFor='let opt of option; let i=i' >
+
+  <input type="radio" value={{opt}} name="radiogroup"  [checked]='opt == value' >  {{opt}}
 
 </div>
