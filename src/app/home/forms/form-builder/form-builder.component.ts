@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { ProjectService } from '../../../service/ProjectService';
 import './allscript.js';
 
@@ -9,6 +11,7 @@ import './allscript.js';
 })
 export class FormBuilderComponent implements OnInit {
 
+  completeArray : any = [];
   jsonArray: any = [];
   formDetails: any = [];
   rules: any = [];
@@ -17,24 +20,34 @@ export class FormBuilderComponent implements OnInit {
   pos: any;
   display = false;
   formError = false;
+  rule = false;
+  submitButton = 'Submit';
+  templateCid: any;
+  disableSubmitButton : any = true;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private router: Router) {
     this.projectService.emitFormElement.subscribe((res)=>{
-
-      console.log(res);
+      this.disableSubmitButton = false;
+      this.rule = false;
+      // console.log(res);
+      this.completeArray = res;
       this.jsonArray = res.Elements;
       this.formDetails = res.Details;
       this.rules = res.Rules;
       this.display = true;
     });
+    if(!this.rule) {
+        this.submitButton = "Submit";
+    }
   }
 
 
   ngOnInit() {
+
   }
 
   responseData(data: any) {
-    console.log(data);
+    // console.log(data);
     this.flag = 0;
     this.pos = 0;
 
@@ -50,13 +63,45 @@ export class FormBuilderComponent implements OnInit {
     if(this.flag == 1) {
         this.act_data[this.pos].value = data.value;
         this.checkError(data);
+        this.checkForRules(data);
     }
     if(this.flag == 0) {
       this.act_data.push(data);
       this.checkError(data);
+      this.checkForRules(data);
     }
 
-    console.log(this.act_data);
+  }
+
+  checkForRules(data) {
+    if(this.completeArray.Rules) {
+
+      if(this.completeArray.Rules.length > 0) {
+
+        for(let temp of this.completeArray.Rules) {
+
+          if(data.cid === temp.elementCid) {
+
+          if( data.value === temp.elementValue ) {
+            this.rule = true;
+            let tempArray : any;
+            this.templateCid = temp.tempCid;
+            // this.tempArray  = this.projectService.getTemplateElement(temp.tempCid);
+            // this.jsonArray = this.jsonArray.concat(tempArray);
+            // console.log(this.jsonArray);
+            // componentHandler.upgradeDom();
+
+              if(this.rule) {
+                  this.submitButton = "Next Form";
+              }
+            } else {
+                this.rule = false;
+                this.submitButton = "Submit";
+            }
+          }
+        }
+      }
+    }
   }
 
   checkError(data) {
@@ -104,14 +149,41 @@ export class FormBuilderComponent implements OnInit {
       }
     }
 
-    if(!this.formError){
-      console.log('ok');
+    if(this.rule) {
+      this.projectService.storeFormArray(this.completeArray);
+      this.router.navigate(['/template'], { queryParams: { templateCid:  this.templateCid} });
     }
 
+    if(!this.formError){
+      // console.log('ok');
+      componentHandler.upgradeDom();
+      this.disableSubmitButton = true;
+      
+    }
+
+    if(!this.rule) {
+      this.submitResponce();
+    }
+  }
+
+  submitResponce() {
+    componentHandler.upgradeDom();
+    this.submitButton = "Just a moment";
+    setTimeout(()=>{
+      this.jsonArray = [];
+      this.disableSubmitButton = false;
+    }, 1000);
+    this.projectService.submitFormArray(this.completeArray);
   }
 
   ngAfterViewInit() {
     componentHandler.upgradeDom();
+  }
+
+  backToDashboard() {
+    setTimeout(()=>{
+      this.router.navigate(['/']);
+    }, 300);
   }
 
 }

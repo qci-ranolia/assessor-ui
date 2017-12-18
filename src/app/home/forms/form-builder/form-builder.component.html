@@ -1,5 +1,10 @@
 <div class="demo-card-square mdl-card ">
-  <div *ngIf='display'  class="mdl-card__title ">
+
+  <div *ngIf="disableSubmitButton" style="width:100%">
+    <div id="p" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width:100%"></div>
+  </div>
+
+  <div   class="mdl-card__title ">
     <h2 class="mdl-card__title-text">{{formDetails.project}}</h2>
   </div>
   <div class="mdl-card__supporting-text">
@@ -13,11 +18,12 @@
         <span class="mdl-chip__text requiredMsg"><b> * Required </b> </span>
     </span>
 
+
   </div>
 
-  <div class="mdl-card__actions mdl-card--border formBoxHeight">
+  <div  class="mdl-card__actions mdl-card--border formBoxHeight">
 
-    <div *ngFor='let json of jsonArray; let i = index'>
+    <div  *ngFor='let json of jsonArray; let i = index'>
 
       <div *ngIf="json.type == 'text'" >
         <app-input-text [json]=json  id={{i}} (responseData)="responseData($event)"></app-input-text>
@@ -79,13 +85,31 @@
 
     </div>
 
-    <div class="mdl-grid">
+    <div *ngIf='jsonArray.length > 0' class="mdl-grid">
       <div class="mdl-cell mdl-cell--12-col" style="margin: auto;">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" (click)='saveFormReaponce()'>
-         <b>Submit  <i class="material-icons">send</i></b>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" (click)='saveFormReaponce()' [ngClass]="{disabled : disableSubmitButton}">
+         <b>{{submitButton}}  <i class="material-icons">send</i></b>
         </button>
       </div>
     </div>
+
+    <div  *ngIf="disableSubmitButton" class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col">
+      </div>
+      <div id="p211" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width:100%"></div>
+    </div>
+
+    <div *ngIf='jsonArray.length == 0' class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col finishMsg" >
+          <h3>Thanks! Form submitted... <b> <i class="material-icons">done_all</i> </b> </h3>
+          <br>
+          <br>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="backToDashboard()">
+            <b><i class="material-icons">arrow_back</i> dashboard</b>
+          </button>
+      </div>
+    </div>
+
   </div>
 
 </div>

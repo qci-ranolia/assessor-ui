@@ -3,12 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProjectService } from '../../service/ProjectService';
 
+
 @Component({
-  selector: 'app-forms',
-  templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css']
+  selector: 'app-templates',
+  templateUrl: './templates.component.html',
+  styleUrls: ['./templates.component.css']
 })
-export class FormsComponent implements OnInit {
+export class TemplatesComponent implements OnInit {
 
   fcid : any;
   templateCid: any;

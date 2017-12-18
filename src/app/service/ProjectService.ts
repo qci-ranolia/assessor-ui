@@ -33,14 +33,18 @@ export class ProjectService {
     {
       Details: { name: 'Form0', rule: 'None', project: 'Project 0', status: 'Offline', cid: '1220' },
       Elements: [],
-      Rules: [],
+      Rules: [
+        {name: 'Rule 1',elementCid:'2', elementName:'Text', elementType: "text", elementValue:"sam", tempCid: '12332', tempName: 'template1'}
+      ],
     },
     {
       Details: { name: 'Form1', rule: 'None', project: 'Project 1', status: 'Offline', cid: '1221' },
       Elements: [{ type: "text", required: false, name: "Name" ,"cid":"1"},
       { type: "email", required: false, hepltext: "", name: "Email ID" ,"cid":"2"},
       { type: "number", required: false, hepltext: "", name: "Number Input" ,"cid":"3"},],
-      Rules: [{ name: 'Rule 1', elementName: 'Name', elementType: "text", elementValue: "sam", template: 1, tempCid: '2332', tempName: 'template1' },],
+      Rules: [
+        {name: 'Rule 1',elementCid:'2', elementName:'Text', elementType: "text", elementValue:"sam", tempCid: '12332', tempName: 'template1'}
+      ],
     },
     {
       Details: { name: 'Form2', rule: 'None', project: 'Project 2', status: 'Online', cid: '2121' },
@@ -67,6 +71,23 @@ export class ProjectService {
     { name: 'IRTC Swatch Bharat survey form for all', project: 'Project 3', cid: '2121' },
   ];
 
+  templateArray = [
+                { Details:   { name: 'template1', project:"N/A", cid:'12332'},
+                  Elements:  [{type: "text", required: true, name: "Name", cid:"1", value:'', },
+                                  {type: "email", required: false, hepltext: "", name: "Email ID", cid:"2", value:''},
+                                  {type: "number", required: false, hepltext: "", name: "Number Input", cid:"3", value:''},],
+
+                },
+                { Details:   { name: 'template2', rule: 'None', project:"N/A", cid:'12323' },
+                  Elements:  [{type: "text", required: false, name: "Name2", cid:"11", value:''},
+                                {type: "email", required: true, hepltext: "", name: "Email ID2", cid:"12", value:''},
+                                {type: "number", required: true, hepltext: "", name: "Number Input2", cid:"13", value:''},],
+                }
+              ];
+
+  storeFormArrayTemp :any = [];
+  submittedForm: any[];
+
   getFormCards() {
     this.emitFormCard.emit(this.formCard);
   }
@@ -86,7 +107,48 @@ export class ProjectService {
         break;
       }
     }
-
   }
 
+  getTemplateElement(tempCid : any) {
+    for(let temp of this.templateArray) {
+      if( temp.Details.cid == tempCid ) {
+        return temp.Elements;
+      }
+    }
+  }
+
+  getTemplateByCid(tempCid: any) {
+    for(let i of this.templateArray) {
+      if(i.Details.cid == tempCid) {
+        this.emitFormElement.emit(i);
+        break;
+      }
+    }
+  }
+
+  storeFormArray(formArray: any) {
+    this.storeFormArrayTemp = formArray;
+  }
+
+  submitFormArray(tempArray: any) {
+    if(this.storeFormArrayTemp.Elements) {
+
+      for(let temp of this.storeFormArrayTemp.Rules) {
+
+        if(temp.tempCid == tempArray.Details.cid) {
+
+          this.storeFormArrayTemp.Elements = this.storeFormArrayTemp.Elements.concat(tempArray.Elements);
+          this.submittedForm = this.storeFormArrayTemp;
+          console.log(this.submittedForm);
+          this.storeFormArrayTemp = [];
+
+
+        }
+      }
+    } else {
+      this.submittedForm = tempArray;
+      console.log(this.submittedForm)
+    }
+
+  }
 }

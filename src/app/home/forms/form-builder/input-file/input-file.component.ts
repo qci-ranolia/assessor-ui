@@ -28,7 +28,7 @@ export class InputFileComponent implements OnInit {
 
   getVal($event) {
 
-    console.log('1');
+    // console.log('1');
     this.formData.delete('file');
     this.files = $event.target.files || $event.srcElement.files;
     let file = this.files[0];
@@ -36,7 +36,7 @@ export class InputFileComponent implements OnInit {
     this.name = file.name;
     this.formData = new FormData();
     this.formData.append('file', file);
-    console.log(this.formData);
+    // console.log(this.formData);
 
     this.json.value = this.formData;
     this.json.fileName = this.name;

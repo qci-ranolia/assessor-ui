@@ -27,6 +27,7 @@ import { InputRadioComponent } from './home/forms/form-builder/input-radio/input
 import { InputSliderComponent } from './home/forms/form-builder/input-slider/input-slider.component';
 import { InputTextareaComponent } from './home/forms/form-builder/input-textarea/input-textarea.component';
 import { InputTimeComponent } from './home/forms/form-builder/input-time/input-time.component';
+import { TemplatesComponent } from './home/templates/templates.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { InputTimeComponent } from './home/forms/form-builder/input-time/input-t
     InputRadioComponent,
     InputSliderComponent,
     InputTextareaComponent,
-    InputTimeComponent
+    InputTimeComponent,
+    TemplatesComponent
   ],
   imports: [
     BrowserModule,
