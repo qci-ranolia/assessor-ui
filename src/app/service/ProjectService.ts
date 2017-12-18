@@ -34,7 +34,8 @@ export class ProjectService {
       Details: { name: 'Form0', rule: 'None', project: 'Project 0', status: 'Offline', cid: '1220' },
       Elements: [],
       Rules: [
-        {name: 'Rule 1',elementCid:'2', elementName:'Text', elementType: "text", elementValue:"sam", tempCid: '12332', tempName: 'template1'}
+        {name: 'Rule 1',elementCid:'2', elementName:'Text', elementType: "text", elementValue:"sam", tempCid: '12332', tempName: 'template1'},
+        {name: 'Rule 2',elementCid:'1', elementName:'Text0', elementType: "text", elementValue:"sammy", tempCid: '12323', tempName: 'template2'},
       ],
     },
     {
@@ -68,20 +69,20 @@ export class ProjectService {
     { name: 'Form0', project: 'Project 0', cid: '1220' },
     { name: 'Form1', project: 'Project 1', cid: '1221' },
     { name: 'Form2', project: 'Project 2', cid: '2121' },
-    { name: 'IRTC Swatch Bharat survey form for all', project: 'Project 3', cid: '2121' },
+    { name: 'IRCTC Swatch Railway Survey for General Public', project: 'Project 3', cid: '2121' },
   ];
 
   templateArray = [
                 { Details:   { name: 'template1', project:"N/A", cid:'12332'},
-                  Elements:  [{type: "text", required: true, name: "Name", cid:"1", value:'', },
-                                  {type: "email", required: false, hepltext: "", name: "Email ID", cid:"2", value:''},
-                                  {type: "number", required: false, hepltext: "", name: "Number Input", cid:"3", value:''},],
+                  Elements:  [{type: "text", required: true, name: "Name", cid:"1121", value:'', helptext: "some text here 01",},
+                                  {type: "email", required: false, name: "Email ID", cid:"2122", value:''},
+                                  {type: "number", required: false,  name: "Number Input", cid:"3123", value:''},],
 
                 },
                 { Details:   { name: 'template2', rule: 'None', project:"N/A", cid:'12323' },
-                  Elements:  [{type: "text", required: false, name: "Name2", cid:"11", value:''},
-                                {type: "email", required: true, hepltext: "", name: "Email ID2", cid:"12", value:''},
-                                {type: "number", required: true, hepltext: "", name: "Number Input2", cid:"13", value:''},],
+                  Elements:  [{type: "text", required: false, name: "Name2", cid:"11121", value:''},
+                                {type: "email", required: true, helptext: "some text 1", name: "Email ID2", cid:"12122", value:''},
+                                {type: "number", required: true, helptext: "some text 2", name: "Number Input2", cid:"13123", value:''},],
                 }
               ];
 

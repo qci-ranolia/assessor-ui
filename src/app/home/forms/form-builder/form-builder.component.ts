@@ -41,13 +41,12 @@ export class FormBuilderComponent implements OnInit {
     }
   }
 
-
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   responseData(data: any) {
     // console.log(data);
+    componentHandler.upgradeDom();
+
     this.flag = 0;
     this.pos = 0;
 
@@ -64,16 +63,19 @@ export class FormBuilderComponent implements OnInit {
         this.act_data[this.pos].value = data.value;
         this.checkError(data);
         this.checkForRules(data);
+
     }
     if(this.flag == 0) {
       this.act_data.push(data);
       this.checkError(data);
       this.checkForRules(data);
+
     }
 
   }
 
   checkForRules(data) {
+
     if(this.completeArray.Rules) {
 
       if(this.completeArray.Rules.length > 0) {
@@ -82,21 +84,21 @@ export class FormBuilderComponent implements OnInit {
 
           if(data.cid === temp.elementCid) {
 
-          if( data.value === temp.elementValue ) {
+          if( data.value.trim() === temp.elementValue ) {
+            // console.log(data);
             this.rule = true;
             let tempArray : any;
-            this.templateCid = temp.tempCid;
-            // this.tempArray  = this.projectService.getTemplateElement(temp.tempCid);
-            // this.jsonArray = this.jsonArray.concat(tempArray);
-            // console.log(this.jsonArray);
-            // componentHandler.upgradeDom();
+            this.templateCid = temp.tempCid;                                                                  // --------- > 1st Rule process
+            tempArray  = this.projectService.getTemplateElement(temp.tempCid);                                // --------- > 1st Rule process
+            this.updateJsonArray(data.cid, tempArray);                                                        // --------- > 1st Rule process
 
-              if(this.rule) {
-                  this.submitButton = "Next Form";
-              }
+              // if(this.rule) {                                                                              // ---------- > 2nd Rule process
+              //     this.submitButton = "Next Form";                                                         // ---------- > 2nd Rule process
+              // }                                                                                            // ---------- > 2nd Rule process
             } else {
                 this.rule = false;
                 this.submitButton = "Submit";
+                this.deleteRuleFromJsonArray(data.cid);                                                        // --------- > 1st Rule process
             }
           }
         }
@@ -138,6 +140,58 @@ export class FormBuilderComponent implements OnInit {
     }
   }
 
+  updateJsonArray(cid, tempArray) {
+    // console.log(tempArray);
+    let index: any;
+    let temp1 : any=[];
+    let temp2 : any=[];
+    for( let i=0; i<this.jsonArray.length; i++) {
+      if(this.jsonArray[i].cid == cid) {
+        index = i;
+        // console.log(index);
+      }
+    }
+    for(let i=0; i<=index; i++) {
+      temp1.push(this.jsonArray[i]);
+      // console.log(this.jsonArray[i]);
+    }
+    for(let i=(index+1); i<this.jsonArray.length; i++) {
+      temp2.push(this.jsonArray[i]);
+      // console.log(this.jsonArray[i]);
+    }
+    this.jsonArray = temp1;
+    this.jsonArray = this.jsonArray.concat(tempArray);
+    this.jsonArray = this.jsonArray.concat(temp2);
+    // console.log(this.jsonArray);
+    componentHandler.upgradeDom();
+
+  }
+
+  deleteRuleFromJsonArray(cid) {
+    let index : any;
+    let temp1 : any=[];
+    let temp2 : any=[];
+    for( let i=0; i<this.jsonArray.length; i++) {
+      if(this.jsonArray[i].cid == cid) {
+        index = i;
+        // console.log(index);
+      }
+    }
+    for(let i=0; i<=index; i++) {
+      temp1.push(this.jsonArray[i]);
+      // console.log(this.jsonArray[i]);
+    }
+    for(let i=(index+1); i<this.completeArray.Elements.length; i++) {
+      temp2.push(this.completeArray.Elements[i]);
+      // console.log(this.completeArray.Elements[i]);
+    }
+
+    this.jsonArray = temp1;
+    this.jsonArray = this.jsonArray.concat(temp2);
+    // console.log(this.jsonArray);
+
+  }
+
   saveFormReaponce() {
     for(let json of this.jsonArray) {
       this.checkError(json);
@@ -149,21 +203,22 @@ export class FormBuilderComponent implements OnInit {
       }
     }
 
-    if(this.rule) {
-      this.projectService.storeFormArray(this.completeArray);
-      this.router.navigate(['/template'], { queryParams: { templateCid:  this.templateCid} });
-    }
-
     if(!this.formError){
-      // console.log('ok');
       componentHandler.upgradeDom();
       this.disableSubmitButton = true;
-      
+      setTimeout(()=>{
+        this.submitResponce();
+      }, 10);
     }
 
-    if(!this.rule) {
-      this.submitResponce();
-    }
+    //  if(this.rule) {
+    //   this.projectService.storeFormArray(this.completeArray);                                          // ---------- > 2nd Rule process
+    //   this.router.navigate(['/template'], { queryParams: { templateCid:  this.templateCid} });         // ---------- > 2nd Rule process
+    // }                                                                                                  // ---------- > 2nd Rule process
+    // if(!this.rule) {                                                                                   // ---------- > 2nd Rule Process
+    //   this.submitResponce();                                                                           // ---------- > 2nd Rule Process
+    // }                                                                                                  // ---------- > 2nd Rule Process
+
   }
 
   submitResponce() {
@@ -172,7 +227,8 @@ export class FormBuilderComponent implements OnInit {
     setTimeout(()=>{
       this.jsonArray = [];
       this.disableSubmitButton = false;
-    }, 1000);
+    }, 2500);
+    this.completeArray.Elements = this.jsonArray;
     this.projectService.submitFormArray(this.completeArray);
   }
 

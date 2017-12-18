@@ -90,13 +90,10 @@
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" (click)='saveFormReaponce()' [ngClass]="{disabled : disableSubmitButton}">
          <b>{{submitButton}}  <i class="material-icons">send</i></b>
         </button>
+        <div *ngIf="disableSubmitButton" style="float:right" >
+          <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+        </div>
       </div>
-    </div>
-
-    <div  *ngIf="disableSubmitButton" class="mdl-grid">
-      <div class="mdl-cell mdl-cell--12-col">
-      </div>
-      <div id="p211" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width:100%"></div>
     </div>
 
     <div *ngIf='jsonArray.length == 0' class="mdl-grid">
