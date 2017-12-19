@@ -9,7 +9,7 @@
     <div *ngFor='let opt of json.option; let i=i' (change)='getVal(opt)'>
 
       <label class = "mdl-radio mdl-js-radio mdl-js-ripple-effect" >
-        <input type = "radio" class = "mdl-radio__button" value={{opt}}   name="radiogroup"  [checked]='opt == json.value'>
+        <input type = "radio" class = "mdl-radio__button" value={{opt.trim()}}   name="radiogroup"  [checked]='opt.trim() == json.value.trim()'>
         <span class = "mdl-radio__label">{{opt}}</span>
       </label>
 
@@ -24,8 +24,8 @@
 </div>
 
 
-<div *ngFor='let opt of option; let i=i' >
+<!-- <div *ngFor='let opt of option; let i=i' >
 
   <input type="radio" value={{opt}} name="radiogroup"  [checked]='opt == value' >  {{opt}}
 
-</div>
+</div> -->

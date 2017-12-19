@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 import { routes } from './app.routes';
 import { AppComponent } from './app.component';
@@ -12,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { FormListingComponent } from './home/form-listing/form-listing.component';
 import { GraphComponent } from './home/graph/graph.component';
 import { ProjectService } from './service/ProjectService';
+import { APIService } from './service/APIService';
 import { FormBuilderComponent } from './home/forms/form-builder/form-builder.component';
 import { InputTextComponent } from './home/forms/form-builder/input-text/input-text.component';
 import { InputPasswordComponent } from './home/forms/form-builder/input-password/input-password.component';
@@ -56,11 +59,15 @@ import { TemplatesComponent } from './home/templates/templates.component';
     TemplatesComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
   ],
-  providers: [ProjectService],
+  providers: [
+    ProjectService,
+    APIService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

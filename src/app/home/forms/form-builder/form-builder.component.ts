@@ -29,7 +29,7 @@ export class FormBuilderComponent implements OnInit {
     this.projectService.emitFormElement.subscribe((res)=>{
       this.disableSubmitButton = false;
       this.rule = false;
-      // console.log(res);
+      console.log(res);
       this.completeArray = res;
       this.jsonArray = res.Elements;
       this.formDetails = res.Details;
@@ -84,7 +84,7 @@ export class FormBuilderComponent implements OnInit {
 
           if(data.cid === temp.elementCid) {
 
-          if( data.value.trim() === temp.elementValue ) {
+          if( data.value.trim() === temp.elementValue.trim() ) {
             // console.log(data);
             this.rule = true;
             let tempArray : any;

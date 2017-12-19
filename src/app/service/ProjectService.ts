@@ -1,11 +1,12 @@
 import { EventEmitter, Injectable, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { APIService } from './APIService';
 
 @Injectable()
 export class ProjectService {
 
-  constructor() {}
+  constructor(private apiService: APIService) {}
 
   emitFormElement = new EventEmitter<any>();
   emitFormCard = new EventEmitter<any>();
@@ -14,8 +15,8 @@ export class ProjectService {
     {"type":"text","required":true,"name":"Text0", "helptext":"Some help text goes here","cid":"1","value":""},
     {"type":"text","required":true,"name":"Text","cid":"2", "helptext":"Some help text goes here","value":""},
     {"type":"password","required":true, "helptext":"Some help text goes here","name":"password","cid":"3","value":""},
-    {"type":"email","required":true, "helptext":"Some help text goes here","name":"email","cid":"4","value":""},
-    {"type":"number","required":true, "helptext":"Some help text goes here","name":"number","rangeFrom":0,"rangeTo":100,"value":"","cid":"5"},
+    {"type":"email","required":false, "helptext":"Some help text goes here","name":"email","cid":"4","value":""},
+    {"type":"number","required":false, "helptext":"Some help text goes here","name":"number","rangeFrom":0,"rangeTo":100,"value":"","cid":"5"},
     {"type":"phone","required":true, "helptext":"Some help text goes here","name":"Phone","rangeFrom":"","rangeTo":"","value":"","cid":"6"},
     {"type":"textarea","required":true, "helptext":"Some help text goes here","name":"TextArea","rangeFrom":"","rangeTo":"","value":"","cid":"7"},
     {"type":"date","required":true, "helptext":"Some help text goes here","name":"Date","rangeFrom":"2017-12-01","rangeTo":"2017-12-31","value":"","cid":"8"},
@@ -27,7 +28,7 @@ export class ProjectService {
     {"type":"file","required":true, "helptext":"Some help text goes here","name":"File Input","rangeFrom":"","rangeTo":"","value":"","option":"","values":["1","2"],"fileTypes":[".png",".doc",".pdf"],"cid":"14"},
     {"type":"location","required":true, "helptext":"Some help text goes here","name":"","cid":"15"},
     {"type":"break","required":true, "helptext":"Some help text goes here","name":"Section Break","cid":"16"}
-  ] ;
+  ];
 
   formArray = [
     {
@@ -96,9 +97,9 @@ export class ProjectService {
   getFormByCid(cid) {
       // not impressive code
 
-        let temp = JSON.stringify(this.demoform);
-        temp = JSON.parse(temp);
-        this.formArray[0].Elements = this.demoform;
+        // let temp = JSON.stringify(this.demoform);
+        // temp = JSON.parse(temp);
+        // this.formArray[0].Elements = this.demoform;
 
       //  till here
 
@@ -152,4 +153,20 @@ export class ProjectService {
     }
 
   }
+
+  syncAll() {
+    this.formCard = [];
+    this.formArray = [];
+      this.apiService.SyncAll().subscribe((res)=>{
+        console.log(res);
+        this.formArray = res.formArray;
+        this.templateArray = res.tempArray;
+        for(let i = 0 ; i< this.formArray.length; i++) {
+          this.formCard.push(this.formArray[i].Details);
+        }
+        console.log(this.formCard);
+        this.emitFormCard.emit(this.formCard);
+      });
+  }
+
 }
