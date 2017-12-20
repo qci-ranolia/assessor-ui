@@ -29,9 +29,12 @@ export class FormBuilderComponent implements OnInit {
     this.projectService.emitFormElement.subscribe((res)=>{
       this.disableSubmitButton = false;
       this.rule = false;
-      console.log(res);
+      // console.log(res);
       this.completeArray = res;
       this.jsonArray = res.Elements;
+      for(let cr of this.jsonArray) {
+        this.checkForRules(cr);
+      }
       this.formDetails = res.Details;
       this.rules = res.Rules;
       this.display = true;
@@ -75,6 +78,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   checkForRules(data) {
+    this.deleteRuleFromJsonArray(data.cid);
 
     if(this.completeArray.Rules) {
 
@@ -84,6 +88,8 @@ export class FormBuilderComponent implements OnInit {
 
           if(data.cid === temp.elementCid) {
 
+            console.log(temp.elementValue+ " = = = " +data.value);
+
           if( data.value.trim() === temp.elementValue.trim() ) {
             // console.log(data);
             this.rule = true;
@@ -91,7 +97,7 @@ export class FormBuilderComponent implements OnInit {
             this.templateCid = temp.tempCid;                                                                  // --------- > 1st Rule process
             tempArray  = this.projectService.getTemplateElement(temp.tempCid);                                // --------- > 1st Rule process
             this.updateJsonArray(data.cid, tempArray);                                                        // --------- > 1st Rule process
-
+            break;
               // if(this.rule) {                                                                              // ---------- > 2nd Rule process
               //     this.submitButton = "Next Form";                                                         // ---------- > 2nd Rule process
               // }                                                                                            // ---------- > 2nd Rule process
@@ -184,11 +190,13 @@ export class FormBuilderComponent implements OnInit {
     for(let i=(index+1); i<this.completeArray.Elements.length; i++) {
       temp2.push(this.completeArray.Elements[i]);
       // console.log(this.completeArray.Elements[i]);
+      componentHandler.upgradeDom();
     }
 
     this.jsonArray = temp1;
     this.jsonArray = this.jsonArray.concat(temp2);
     // console.log(this.jsonArray);
+    componentHandler.upgradeDom();
 
   }
 

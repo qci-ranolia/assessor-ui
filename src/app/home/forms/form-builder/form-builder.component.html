@@ -22,7 +22,7 @@
   </div>
 
   <div  class="mdl-card__actions mdl-card--border formBoxHeight">
-
+    {{jsonArray}}
     <div  *ngFor='let json of jsonArray; let i = index'>
 
       <div *ngIf="json.type == 'text'" >

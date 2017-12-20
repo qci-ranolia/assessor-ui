@@ -112,8 +112,10 @@ export class ProjectService {
   }
 
   getTemplateElement(tempCid : any) {
+    // console.log(tempCid);
     for(let temp of this.templateArray) {
       if( temp.Details.cid == tempCid ) {
+        // console.log(temp.Elements);
         return temp.Elements;
       }
     }

@@ -14,7 +14,7 @@ export class FormListingComponent implements OnInit {
 
   constructor(private projectService: ProjectService, private router: Router) {
     this.projectService.emitFormCard.subscribe(res=>{
-        console.log(res);
+        // console.log(res);
         this.cardArray = res;
     });
   }
