@@ -29,7 +29,7 @@ export class FormBuilderComponent implements OnInit {
     this.projectService.emitFormElement.subscribe((res)=>{
       this.disableSubmitButton = false;
       this.rule = false;
-      // console.log(res);
+      console.log(res);
       this.completeArray = res;
       this.jsonArray = res.Elements;
       for(let cr of this.jsonArray) {
@@ -78,73 +78,89 @@ export class FormBuilderComponent implements OnInit {
   }
 
   checkForRules(data) {
+    let flag  = 0;
     this.deleteRuleFromJsonArray(data.cid);
-
     if(this.completeArray.Rules) {
-
       if(this.completeArray.Rules.length > 0) {
 
         for(let temp of this.completeArray.Rules) {
+          let tempDataArray = [];
+          let tempElementValueArray = [];
 
-          if(data.cid === temp.elementCid) {
+          console.log(data.value);
+          data.value = data.value+"";
 
-            console.log(temp.elementValue+ " = = = " +data.value);
-
-          if( data.value.trim() === temp.elementValue.trim() ) {
-            // console.log(data);
-            this.rule = true;
-            let tempArray : any;
-            this.templateCid = temp.tempCid;                                                                  // --------- > 1st Rule process
-            tempArray  = this.projectService.getTemplateElement(temp.tempCid);                                // --------- > 1st Rule process
-            this.updateJsonArray(data.cid, tempArray);                                                        // --------- > 1st Rule process
-            break;
-              // if(this.rule) {                                                                              // ---------- > 2nd Rule process
-              //     this.submitButton = "Next Form";                                                         // ---------- > 2nd Rule process
-              // }                                                                                            // ---------- > 2nd Rule process
+          if((data.value).includes(",")) {
+            tempDataArray = data.value.split(",");
+          } else {
+            if(data.value.length) {
+              let d = (data.value).toString();
+              if(d.includes(",")) {
+                tempDataArray = d.split(",");
+              }
+              else {
+                tempDataArray.push(d);
+              }
             } else {
-                this.rule = false;
-                this.submitButton = "Submit";
-                this.deleteRuleFromJsonArray(data.cid);                                                        // --------- > 1st Rule process
+              tempDataArray.push(data.value);
             }
           }
-        }
-      }
-    }
-  }
 
-  checkError(data) {
+          if((temp.elementValue).includes(",")) {
+            tempElementValueArray = temp.elementValue.split(",");
+          } else {
+            // tempElementValueArray.push(temp.elementValue);
+            if(temp.elementValue.length) {
+              let d = (temp.elementValue).toString();
+              if(d.includes(",")) {
+                tempElementValueArray = d.split(",");
+              }
+              else {
+                tempElementValueArray.push(d);
+              }
+            } else {
+              tempElementValueArray.push(temp.elementValue);
+            }
+          }
+          console.log(tempElementValueArray);
+          for(let m of tempDataArray) {
 
-    if(data.required && data.value == "") {
+            for(let n of tempElementValueArray) {
 
-      for(let i = 0 ; i<= this.jsonArray.length; i++) {
+              console.log(m + " = = = "+n);
 
-        if(this.jsonArray[i].cid === data.cid) {
-          this.jsonArray[i].errorMsg = "This feild can't be empty, please provide a valid input!";
-          this.formError = true;
-          // console.log(data.cid);
-          // console.log(this.formError);
-          break;
-        }
-      }
-    } else {
+              if(m === n ) {
+                  console.log(n);
+                  this.rule = true;
+                  let tempArray : any;
+                  this.templateCid = temp.tempCid;
+                  tempArray  = this.projectService.getTemplateElement(temp.tempCid);
+                  this.updateJsonArray(data.cid, tempArray);
+                  flag = 1;
+                  console.log(flag);
+                  break;
 
-      for(let i = 0; i<= this.jsonArray.length; i++) {
-          if(data.required && data.value != "") {
+                  } else {
 
-            for(let j= 0; j<= this.jsonArray.length; j++) {
-
-              if(this.jsonArray[j].cid === data.cid) {
-                this.jsonArray[j].errorMsg = false;
-                this.formError = false;
-                // console.log(data.cid);
-                // console.log(this.formError);
-                break;
+                    if(data.cid != temp.elementCid) {
+                      console.log("id");
+                      break;
+                    }
+                    if(flag == 1) {
+                      console.log("flag");
+                      break;
+                    }
+                    console.log(22);
+                    this.rule = false;
+                    this.submitButton = "Submit";
+                    this.deleteRuleFromJsonArray(data.cid);
+                }
               }
             }
           }
+        }
       }
     }
-  }
 
   updateJsonArray(cid, tempArray) {
     // console.log(tempArray);
@@ -198,6 +214,40 @@ export class FormBuilderComponent implements OnInit {
     // console.log(this.jsonArray);
     componentHandler.upgradeDom();
 
+  }
+
+  checkError(data) {
+
+    if(data.required && data.value == "") {
+
+      for(let i = 0 ; i<= this.jsonArray.length; i++) {
+
+        if(this.jsonArray[i].cid === data.cid) {
+          this.jsonArray[i].errorMsg = "This feild can't be empty, please provide a valid input!";
+          this.formError = true;
+          // console.log(data.cid);
+          // console.log(this.formError);
+          break;
+        }
+      }
+    } else {
+
+      for(let i = 0; i<= this.jsonArray.length; i++) {
+          if(data.required && data.value != "") {
+
+            for(let j= 0; j<= this.jsonArray.length; j++) {
+
+              if(this.jsonArray[j].cid === data.cid) {
+                this.jsonArray[j].errorMsg = false;
+                this.formError = false;
+                // console.log(data.cid);
+                // console.log(this.formError);
+                break;
+              }
+            }
+          }
+      }
+    }
   }
 
   saveFormReaponce() {
