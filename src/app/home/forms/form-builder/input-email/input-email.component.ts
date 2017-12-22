@@ -16,7 +16,7 @@ export class InputEmailComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log(this.json);
+    // console.log(this.json);
   }
 
   funID(id) {

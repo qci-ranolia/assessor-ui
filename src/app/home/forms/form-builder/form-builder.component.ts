@@ -82,85 +82,94 @@ export class FormBuilderComponent implements OnInit {
     this.deleteRuleFromJsonArray(data.cid);
     if(this.completeArray.Rules) {
       if(this.completeArray.Rules.length > 0) {
+        for(let r = 0; r< this.completeArray.Rules.length; r ++) {
 
-        for(let temp of this.completeArray.Rules) {
-          let tempDataArray = [];
-          let tempElementValueArray = [];
+          if(data.cid ==  this.completeArray.Rules[r].elementCid) {
+            let tempDataArray = [];
+            let tempElementValueArray = [];
 
-          console.log(data.value);
-          data.value = data.value+"";
-
-          if((data.value).includes(",")) {
-            tempDataArray = data.value.split(",");
-          } else {
-            if(data.value.length) {
-              let d = (data.value).toString();
-              if(d.includes(",")) {
-                tempDataArray = d.split(",");
-              }
-              else {
-                tempDataArray.push(d);
-              }
+            data.value+"";
+            if((data.value).includes(",")) {
+              tempDataArray = data.value.split(",");
             } else {
-              tempDataArray.push(data.value);
+              if(data.value.length) {
+                let d = (data.value).toString();
+                if(d.includes(",")) {
+                  tempDataArray = d.split(",");
+                }
+                else {
+                  tempDataArray.push(d);
+                }
+              } else {
+                tempDataArray.push(data.value);
+              }
             }
-          }
 
-          if((temp.elementValue).includes(",")) {
-            tempElementValueArray = temp.elementValue.split(",");
-          } else {
-            // tempElementValueArray.push(temp.elementValue);
-            if(temp.elementValue.length) {
-              let d = (temp.elementValue).toString();
-              if(d.includes(",")) {
-                tempElementValueArray = d.split(",");
-              }
-              else {
-                tempElementValueArray.push(d);
-              }
+            if((this.completeArray.Rules[r].elementValue).includes(",")) {
+              tempElementValueArray = this.completeArray.Rules[r].elementValue.split(",");
             } else {
-              tempElementValueArray.push(temp.elementValue);
+              // tempElementValueArray.push(temp.elementValue);
+              if(this.completeArray.Rules[r].length) {
+                let d = (this.completeArray.Rules[r].elementValue).toString();
+                if(d.includes(",")) {
+                  tempElementValueArray = d.split(",");
+                }
+                else {
+                  tempElementValueArray.push(d);
+                }
+              } else {
+                tempElementValueArray.push(this.completeArray.Rules[r].elementValue);
+              }
             }
-          }
-          console.log(tempElementValueArray);
-          for(let m of tempDataArray) {
 
-            for(let n of tempElementValueArray) {
+            // ----> AND condition starts here <-----
+            //
+            // tempDataArray = tempDataArray.sort();
+            // tempElementValueArray = tempElementValueArray.sort();
+            // console.log(tempDataArray);
+            // console.log(tempElementValueArray);
+            // if(tempDataArray.length==tempElementValueArray.length && tempDataArray.every((v,i)=> v === tempElementValueArray[i]))
+            // {
+            //   console.log("match");
+            //   let tempArray  = this.projectService.getTemplateElement(this.completeArray.Rules[r].tempCid);
+            //   this.updateJsonArray(data.cid, tempArray);
+            // } else {
+            //   this.deleteRuleFromJsonArray2(data);
+            // }
+            //
+            // ----> AND condition ends here <-----
 
-              console.log(m + " = = = "+n);
 
-              if(m === n ) {
-                  console.log(n);
-                  this.rule = true;
-                  let tempArray : any;
-                  this.templateCid = temp.tempCid;
-                  tempArray  = this.projectService.getTemplateElement(temp.tempCid);
-                  this.updateJsonArray(data.cid, tempArray);
+
+            // ----> or condition starts here <-----
+            //
+            for( let m of tempDataArray) {
+              for(let n of tempElementValueArray) {
+
+                if(m === n) {
                   flag = 1;
-                  console.log(flag);
-                  break;
-
-                  } else {
-
-                    if(data.cid != temp.elementCid) {
-                      console.log("id");
-                      break;
-                    }
-                    if(flag == 1) {
-                      console.log("flag");
-                      break;
-                    }
-                    console.log(22);
-                    this.rule = false;
-                    this.submitButton = "Submit";
-                    this.deleteRuleFromJsonArray(data.cid);
+                  let tempArray  = this.projectService.getTemplateElement(this.completeArray.Rules[r].tempCid);
+                  this.updateJsonArray(data.cid, tempArray);
+                } else {
+                  if(flag ==1) {
+                    // break;
+                  }
                 }
               }
             }
+            if(flag == 1) {
+              console.log(data.name+' matched!');
+            } else {
+              console.log(data.name+' not matched!');
+              this.deleteRuleFromJsonArray2(data);
+            }
+            //
+            // ----> or condition ends here <-----
           }
         }
       }
     }
+  }
 
   updateJsonArray(cid, tempArray) {
     // console.log(tempArray);
@@ -185,7 +194,43 @@ export class FormBuilderComponent implements OnInit {
     this.jsonArray = this.jsonArray.concat(tempArray);
     this.jsonArray = this.jsonArray.concat(temp2);
     // console.log(this.jsonArray);
+
+    let temp = this.jsonArray;
+    this.jsonArray = Array.from(new Set(this.jsonArray));
+
     componentHandler.upgradeDom();
+
+
+  }
+
+  deleteRuleFromJsonArray2(data) {
+
+
+
+    // deleteElementFormJsonArray(data.cid) {
+    //
+    // }
+
+    let tempArray: any = []
+    let tempArray2: any = []
+
+    for(let r = 0; r< this.completeArray.Rules.length; r ++) {
+
+      if(data.cid == this.completeArray.Rules[r].elementCid) {
+        tempArray = this.projectService.getTemplateElement(this.completeArray.Rules[r].tempCid);
+        // console.log(tempArray);
+
+        for(let r1 = 0; r1< this.jsonArray.length; r1 ++) {
+          for(let r2 =0; r2< tempArray.length; r2++) {
+            if(this.jsonArray[r1].cid == tempArray[r2].cid) {
+
+              // console.log(this.jsonArray[r1].name);
+              this.jsonArray.splice(r1,1);
+            }
+          }
+        }
+      }
+    }
 
   }
 
