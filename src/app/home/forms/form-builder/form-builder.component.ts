@@ -88,7 +88,7 @@ export class FormBuilderComponent implements OnInit {
             let tempDataArray = [];
             let tempElementValueArray = [];
 
-            data.value+"";
+            data.value+="";
             if((data.value).includes(",")) {
               tempDataArray = data.value.split(",");
             } else {
@@ -122,49 +122,53 @@ export class FormBuilderComponent implements OnInit {
               }
             }
 
-            // ----> AND condition starts here <-----
-            //
-            // tempDataArray = tempDataArray.sort();
-            // tempElementValueArray = tempElementValueArray.sort();
-            // console.log(tempDataArray);
-            // console.log(tempElementValueArray);
-            // if(tempDataArray.length==tempElementValueArray.length && tempDataArray.every((v,i)=> v === tempElementValueArray[i]))
-            // {
-            //   console.log("match");
-            //   let tempArray  = this.projectService.getTemplateElement(this.completeArray.Rules[r].tempCid);
-            //   this.updateJsonArray(data.cid, tempArray);
-            // } else {
-            //   this.deleteRuleFromJsonArray2(data);
-            // }
-            //
-            // ----> AND condition ends here <-----
+            if(this.completeArray.Rules[r].satisfyAll) {
 
+              // ----> AND condition starts here <-----
+              //
+              tempDataArray = tempDataArray.sort();
+              tempElementValueArray = tempElementValueArray.sort();
+              console.log(tempDataArray);
+              console.log(tempElementValueArray);
+              if(tempDataArray.length==tempElementValueArray.length && tempDataArray.every((v,i)=> v === tempElementValueArray[i]))
+              {
+                console.log("match");
+                let tempArray  = this.projectService.getTemplateElement(this.completeArray.Rules[r].tempCid);
+                this.updateJsonArray(data.cid, tempArray);
+              } else {
+                this.deleteRuleFromJsonArray2(data);
+              }
+              //
+              // ----> AND condition ends here <-----
 
+            } else {
 
-            // ----> or condition starts here <-----
-            //
-            for( let m of tempDataArray) {
-              for(let n of tempElementValueArray) {
+              // ----> or condition starts here <-----
+              //
+              for( let m of tempDataArray) {
+                for(let n of tempElementValueArray) {
 
-                if(m === n) {
-                  flag = 1;
-                  let tempArray  = this.projectService.getTemplateElement(this.completeArray.Rules[r].tempCid);
-                  this.updateJsonArray(data.cid, tempArray);
-                } else {
-                  if(flag ==1) {
-                    // break;
+                  if(m === n) {
+                    flag = 1;
+                    let tempArray  = this.projectService.getTemplateElement(this.completeArray.Rules[r].tempCid);
+                    this.updateJsonArray(data.cid, tempArray);
+                  } else {
+                    if(flag ==1) {
+                      // break;
+                    }
                   }
                 }
               }
+              if(flag == 1) {
+                console.log(data.name+' matched!');
+              } else {
+                console.log(data.name+' not matched!');
+                this.deleteRuleFromJsonArray2(data);
+              }
+              //
+              // ----> or condition ends here <-----
+
             }
-            if(flag == 1) {
-              console.log(data.name+' matched!');
-            } else {
-              console.log(data.name+' not matched!');
-              this.deleteRuleFromJsonArray2(data);
-            }
-            //
-            // ----> or condition ends here <-----
           }
         }
       }
