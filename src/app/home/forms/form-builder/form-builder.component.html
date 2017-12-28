@@ -22,7 +22,7 @@
   </div>
 
   <div  class="mdl-card__actions mdl-card--border formBoxHeight">
-    
+
     <div  *ngFor='let json of jsonArray; let i = index'>
 
       <div *ngIf="json.type == 'text'" >
@@ -75,6 +75,14 @@
 
       <div *ngIf="json.type == 'file'" >
         <app-input-file [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-file>
+      </div>
+
+      <div *ngIf="json.type == 'camera'" >
+        <app-input-camera [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-camera>
+      </div>
+
+      <div *ngIf="json.type == 'video'" >
+        <app-input-video [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-video>
       </div>
 
       <div *ngIf="json.type == 'break'" >
