@@ -31,6 +31,8 @@ import { InputSliderComponent } from './home/forms/form-builder/input-slider/inp
 import { InputTextareaComponent } from './home/forms/form-builder/input-textarea/input-textarea.component';
 import { InputTimeComponent } from './home/forms/form-builder/input-time/input-time.component';
 import { TemplatesComponent } from './home/templates/templates.component';
+import { InputCameraComponent } from './home/forms/form-builder/input-camera/input-camera.component';
+import { InputVideoComponent } from './home/forms/form-builder/input-video/input-video.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { TemplatesComponent } from './home/templates/templates.component';
     InputSliderComponent,
     InputTextareaComponent,
     InputTimeComponent,
-    TemplatesComponent
+    TemplatesComponent,
+    InputCameraComponent,
+    InputVideoComponent
   ],
   imports: [
     HttpModule,

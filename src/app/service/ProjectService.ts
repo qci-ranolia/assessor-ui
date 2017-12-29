@@ -12,6 +12,7 @@ export class ProjectService {
   emitFormCard = new EventEmitter<any>();
 
   demoform: any = [
+    {"type":"camera","required":true, "helptext":"Some help text goes here1","name":"cam1","rangeFrom":"","rangeTo":"","value":"","cid":"141"},
     {"type":"text","required":true,"name":"Text0", "helptext":"Some help text goes here","cid":"1","value":""},
     {"type":"text","required":true,"name":"Text","cid":"2", "helptext":"Some help text goes here","value":""},
     {"type":"password","required":true, "helptext":"Some help text goes here","name":"password","cid":"3","value":""},
@@ -41,11 +42,14 @@ export class ProjectService {
     },
     {
       Details: { name: 'Form1', rule: 'None', project: 'Project 1', status: 'Offline', cid: '1221' },
-      Elements: [{ type: "text", required: false, name: "Name" ,"cid":"1"},
-      { type: "email", required: false, hepltext: "", name: "Email ID" ,"cid":"2"},
-      { type: "number", required: false, hepltext: "", name: "Number Input" ,"cid":"3"},],
+      Elements: [
+        {type: "camera",required:true, helptext:"Some help text goes here1",name:"cam1", "value":"",cid:"141"},
+        {type: "video",required:true, helptext:"Some help text goes here2",name:"video1", "value":"",cid:"140"},
+        { type: "text", required: false, name: "Name" ,"cid":"1"},
+        { type: "email", required: false, hepltext: "", name: "Email ID" ,"cid":"2"},
+        { type: "number", required: false, hepltext: "", name: "Number Input" ,"cid":"3"},],
       Rules: [
-        {name: 'Rule 1',elementCid:'2', elementName:'Text', elementType: "text", elementValue:"sam", tempCid: '12332', tempName: 'template1'}
+        {name: 'Rule 1',elementCid:'1', elementName:'Text', elementType: "text", elementValue:"sam", tempCid: '12332', tempName: 'template1'}
       ],
     },
     {

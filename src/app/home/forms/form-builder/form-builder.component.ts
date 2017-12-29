@@ -79,7 +79,7 @@ export class FormBuilderComponent implements OnInit {
 
   checkForRules(data) {
     let flag  = 0;
-    this.deleteRuleFromJsonArray(data.cid);
+    // this.deleteRuleFromJsonArray(data.cid);
     if(this.completeArray.Rules) {
       if(this.completeArray.Rules.length > 0) {
         for(let r = 0; r< this.completeArray.Rules.length; r ++) {
@@ -135,6 +135,7 @@ export class FormBuilderComponent implements OnInit {
                 console.log("match");
                 let tempArray  = this.projectService.getTemplateElement(this.completeArray.Rules[r].tempCid);
                 this.updateJsonArray(data.cid, tempArray);
+                break;
               } else {
                 this.deleteRuleFromJsonArray2(data);
               }
@@ -161,8 +162,10 @@ export class FormBuilderComponent implements OnInit {
               }
               if(flag == 1) {
                 console.log(data.name+' matched!');
+                console.log(data);
               } else {
                 console.log(data.name+' not matched!');
+                console.log(data);
                 this.deleteRuleFromJsonArray2(data);
               }
               //
@@ -209,12 +212,6 @@ export class FormBuilderComponent implements OnInit {
 
   deleteRuleFromJsonArray2(data) {
 
-
-
-    // deleteElementFormJsonArray(data.cid) {
-    //
-    // }
-
     let tempArray: any = []
     let tempArray2: any = []
 
@@ -235,7 +232,6 @@ export class FormBuilderComponent implements OnInit {
         }
       }
     }
-
   }
 
   deleteRuleFromJsonArray(cid) {
@@ -257,12 +253,10 @@ export class FormBuilderComponent implements OnInit {
       // console.log(this.completeArray.Elements[i]);
       componentHandler.upgradeDom();
     }
-
     this.jsonArray = temp1;
     this.jsonArray = this.jsonArray.concat(temp2);
     // console.log(this.jsonArray);
     componentHandler.upgradeDom();
-
   }
 
   checkError(data) {
