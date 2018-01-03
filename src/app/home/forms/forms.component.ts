@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProjectService } from '../../service/ProjectService';
+import "./thisPage.js";
 
 @Component({
   selector: 'app-forms',
@@ -17,7 +18,6 @@ export class FormsComponent implements OnInit {
     this.projectService.emitFormElement.subscribe((res)=>{
       // console.log(res);
     });
-
   }
 
   ngOnInit() {

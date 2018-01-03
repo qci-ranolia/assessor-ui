@@ -1,5 +1,4 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
-            mdl-layout--fixed-header">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header"><!-- [hidden]="isHidden()" -->
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <div class="mdl-layout-spacer"></div>
@@ -8,23 +7,42 @@
       </button>
       <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
           for="demo-menu-lower-right">
-        <li class="mdl-menu__item">Logout <i class="material-icons">lock</i> </li>
-        <li class="mdl-menu__item">User profile <i class="material-icons">perm_identity</i> </li>
+        <li class="mdl-menu__item">
+          <p class="mt-1 mb-1"><span>Logout</span> <i class="material-icons float-right">lock</i></p>
+        </li>
+        <li class="mdl-menu__item">
+          <p class="mt-1 mb-1"><span style="position:relative;top:-6px;">User profile</span> <i class="material-icons">perm_identity</i></p>
+        </li>
       </ul>
     </div>
   </header>
   <div class="mdl-layout__drawer mdl-shadow--4dp">
     <span class="mdl-layout-title">QCI - Collect</span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" [routerLink]="['/dash']"> <b> <i class="material-icons">store</i> Home </b> </a>
-      <a class="mdl-navigation__link mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" [routerLink]="['/dash']"> <b> <i class="material-icons">perm_identity</i> Profile </b> </a>
-      <a class="mdl-navigation__link mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" [routerLink]="['/dash']" (click)='sync()'> <b> <i class="material-icons">sync</i> Sync </b> </a>
-      <a class="mdl-navigation__link mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" [routerLink]="['/login']"> <i class="material-icons">lock</i> <b> Logout </b> </a>
+      <li class="nav d-block" style="border-top:none">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect text-left d-block" [routerLink]="['/dash']"><i class="material-icons">store</i>&nbsp;Home</a>
+      </li><!-- mdl-navigation__link,  mdl-button--raised in anchor class -->
+      <li class="nav d-block" routerLinkActive="hidden">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect text-left d-block" [routerLink]="['/form']"><i class="material-icons">perm_identity</i>&nbsp;Forms</a>
+      </li>
+      <li class="nav d-block">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect text-left d-block" [routerLink]="['/dash']"><i class="material-icons">perm_identity</i>&nbsp;Profile</a>
+      </li>
+      <li class="nav d-block">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect text-left d-block" [routerLink]="['/dash']" (click)='sync()'><i class="material-icons">sync</i>&nbsp;Sync</a>
+      </li>
+      <li class="nav d-block">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect text-left d-block" [routerLink]="['/login']"> <i class="material-icons">lock</i>&nbsp;Logout</a>
+      </li>
     </nav>
   </div>
-  <main class="mdl-layout__content commonProp " >
-
+  <main class="mdl-layout__content commonProp">
     <router-outlet></router-outlet>
-
   </main>
 </div>
+<!--
+<div ng-include src="'views/header.html'" ng-hide="$state.includes('login')"></div>
+app.run(function($state, $rootScope){
+  $rootScope.$state = $state;
+})
+-->

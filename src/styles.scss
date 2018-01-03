@@ -1,30 +1,116 @@
 /* You can add global styles to this file, and also import other style files */
 
-$primary-color: #2196f3;
+$primary-color:#03a9f4;
 $primary-text: #fff;
-$accent-color: #ffd740;
-$accent-text: gray;
+$text-clr-on-light-bg:#474747;
+$accent-color: #ffc107;
+$accent-text:#666;
 
-body{
-  color: #545454;
+$soft-text:#686868;
+.st
+{
+  color:$soft-text  
 }
+$brd-d:1px solid #ddd;
+$brd-2f:1px solid #fff;
 
+.nav.d-block .mdl-button
+{
+  color:$accent-text;
+}
+body{
+  color:#545454;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
 .errorMsg{
   color: red;
   font-size: .9rem;
 }
 .requiredMsg{
-  color: $primary-color;
-  font-size: .9rem;
-
+  color:$primary-color;
+  font-size:.9rem;
 }
 .margin-top-prop {
-  margin-top: -15px !important;
+  margin-top:-15px !important;
 }
 .marginAuto{
-  margin: auto !important;
-  padding: auto !important;
+  margin:auto !important;
+  padding:auto !important;
 }
 .mdl-textfield{
-  width: 90% !important;
+  width:90% !important;
 }
+@media only screen and (max-width:768px) {
+// Bootstrap-4 css over-ride css
+label
+{
+  margin-bottom: 0;
+}
+a:hover, a:focus 
+{
+  text-decoration: none;
+  color: inherit;
+}
+$list-height-lh:50px;// issue with the height > 36px due to materialize lite css...  
+
+// material lite css over-ride css
+  // mdl-navigation
+  .mdl-navigation li.nav
+  {
+    border-bottom:$brd-d;
+    border-top:$brd-2f;
+    height:$list-height-lh;
+    a {
+      height:$list-height-lh;
+      line-height:$list-height-lh;
+    }
+  }
+  // for navigation menu
+.mdl-navigation {
+  padding-top:0 !important;
+}
+  //its child width
+  .mdl-layout__drawer
+  {
+    width:70%;
+    transform:translateX(-110%);
+  }
+//ripple-effect span
+.mdl-ripple
+{
+  background: rgba(0,0,0,0.10);
+}
+$trans-bg:transparent;
+.mdl-chip
+{
+  background: $trans-bg;
+}
+
+// Bootstrap-4 Classes not working with material css lite
+/*
+$s05rem:0.5rem;
+$s25rem:0.25rem;
+$s1rem:1rem;
+$s15rem:1.5rem;
+$s3rem:3rem;
+// padding
+.pl-1{padding-left:$s05rem;}.pt-1{padding-top:$s05rem;}.pr-1{padding-right:$s05rem;}.pb-1{padding-bottom:$s05rem;}.p-1{padding:$s05rem;}
+.pl-2{padding-left:$s25rem;}.pt-2{padding-top:$s25rem;}.pr-2{padding-right:$s25rem;}.pb-2{padding-bottom:$s25rem;}.p-2{padding:$s25rem;}
+.pl-3{padding-left:$s1rem;}.pt-3{padding-top:$s1rem;}.pr-3{padding-right:$s1rem;}.pb-3{padding-bottom:$s1rem;}.p-3{padding:$s1rem;}
+.pl-4{padding-left:$s15rem;}.pt-4{padding-top:$s15rem;}.pr-4{padding-right:$s15rem;}.pb-4{padding-bottom:$s15rem;}.p-4{padding:$s15rem;}
+.pl-5{padding-left:$s3rem;}.pt-5{padding-top:$s3rem;}.pr-5{padding-right:$s3rem;}.pb-5{padding-bottom:$s3rem;}.p-5{padding:$s3rem;}
+//margin
+.ml-1{margin-left:$s05rem;}.mt-1{margin-top:$s05rem;}.mr-1{margin-right:$s05rem;}.mb-1{margin-bottom:$s05rem;}.m-1{margin:$s05rem;}
+.ml-2{margin-left:$s25rem;}.mt-2{margin-top:$s25rem;}.mr-2{margin-right:$s25rem;}.mb-2{margin-bottom:$s25rem;}.m-2{margin:$s25rem;}
+.ml-3{margin-left:$s1rem;}.mt-3{margin-top:$s1rem;}.mr-3{margin-right:$s1rem;}.mb-3{margin-bottom:$s1rem;}.m-3{margin:$s1rem;}
+.ml-4{margin-left:$s15rem;}.mt-4{margin-top:$s15rem;}.mr-4{margin-right:$s15rem;}.mb-4{margin-bottom:$s15rem;}.m-4{margin:$s15rem;}
+.ml-5{margin-left:$s3rem;}.mt-5{margin-top:$s3rem;}.mr-5{margin-right:$s3rem;}.mb-5{margin-bottom:$s3rem;}.m-5{margin:$s3rem;}
+
+.text-left { text-align:left; } .text-right { text-align:right; } .text-center { text-align:center; }
+*/
+}
+//@import url('/app/home/forms/forms.component.css');
+

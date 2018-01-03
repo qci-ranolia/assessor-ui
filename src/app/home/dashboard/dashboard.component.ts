@@ -24,4 +24,13 @@ export class DashboardComponent implements OnInit {
     this.projectService.syncAll();
   }
 
+  /*
+  public isHidden()
+  {
+    let list = ["/form"],
+    route = this.location.path();
+    return(list.indexOf(route) > -1);
+  }
+  */
+
 }

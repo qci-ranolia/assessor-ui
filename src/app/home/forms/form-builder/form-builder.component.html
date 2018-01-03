@@ -21,89 +21,69 @@
 
   </div>
 
-  <div  class="mdl-card__actions mdl-card--border formBoxHeight">
-
-    <div  *ngFor='let json of jsonArray; let i = index'>
-
+  <div class="mdl-card__actions mdl-card--border formBoxHeight">
+    <div *ngFor='let json of jsonArray; let i = index'>
       <div *ngIf="json.type == 'text'" >
-        <app-input-text [json]=json  id={{i}} (responseData)="responseData($event)"></app-input-text>
+        <app-input-text [json]=json id={{i}} (responseData)="responseData($event)"></app-input-text>
       </div>
-
       <div *ngIf="json.type == 'password'" >
         <app-input-password [json]=json id={{i}} (responseData)="responseData($event)"></app-input-password>
       </div>
-
       <div *ngIf="json.type == 'email'" >
         <app-input-email [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-email>
       </div>
-
       <div *ngIf="json.type == 'number'" >
         <app-input-number [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-number>
       </div>
-
       <div *ngIf="json.type == 'phone'" >
         <app-input-phone [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-phone>
       </div>
-
       <div *ngIf="json.type == 'textarea'" >
         <app-input-textarea [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-textarea>
       </div>
-
       <div *ngIf="json.type == 'date'" >
         <app-input-date [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-date>
       </div>
-
       <div *ngIf="json.type == 'time'" >
         <app-input-time [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-time>
       </div>
-
       <div *ngIf="json.type == 'radio'" >
         <app-input-radio [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-radio>
       </div>
-
       <div *ngIf="json.type == 'checkbox'" >
         <app-input-checkbox [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-checkbox>
       </div>
-
       <div *ngIf="json.type == 'dropdown'" >
         <app-input-dropdown [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-dropdown>
       </div>
-
       <div *ngIf="json.type == 'slider'" >
         <app-input-slider [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-slider>
       </div>
-
       <div *ngIf="json.type == 'file'" >
         <app-input-file [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-file>
       </div>
-
       <div *ngIf="json.type == 'camera'" >
         <app-input-camera [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-camera>
       </div>
-
       <div *ngIf="json.type == 'video'" >
         <app-input-video [json]=json  id={{i}}  (responseData)="responseData($event)"></app-input-video>
       </div>
-
       <div *ngIf="json.type == 'break'" >
         <br>
-        <div class="mdl-cell mdl-cell--11-col sectionBreak "  > <b class="backgroundColorClass"> {{json.name}} </b></div>
+        <div class="mdl-cell mdl-cell--11-col sectionBreak"><b class="backgroundColorClass">{{json.name}}</b></div>
         <br>
       </div>
-
     </div>
-
     <div *ngIf='jsonArray.length > 0' class="mdl-grid">
-      <div class="mdl-cell mdl-cell--12-col" style="margin: auto;">
+      <div class="mdl-cell mdl-cell--12-col" style="margin:auto;">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" (click)='saveFormReaponce()' [ngClass]="{disabled : disableSubmitButton}">
-         <b>{{submitButton}}  <i class="material-icons">send</i></b>
+          <b>{{submitButton}}<i class="material-icons">send</i></b>
         </button>
         <div *ngIf="disableSubmitButton" style="float:right" >
           <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
         </div>
       </div>
     </div>
-
     <div *ngIf='jsonArray.length == 0' class="mdl-grid">
       <div class="mdl-cell mdl-cell--12-col finishMsg" >
           <h3>Thanks! Form submitted... <b> <i class="material-icons">done_all</i> </b> </h3>
@@ -114,7 +94,5 @@
           </button>
       </div>
     </div>
-
   </div>
-
 </div>
