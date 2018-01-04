@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 $primary-color:#03a9f4;
 $primary-text: #fff;
 $text-clr-on-light-bg:#474747;
@@ -11,6 +10,7 @@ $soft-text:#686868;
 {
   color:$soft-text  
 }
+
 $brd-d:1px solid #ddd;
 $brd-2f:1px solid #fff;
 
@@ -18,6 +18,7 @@ $brd-2f:1px solid #fff;
 {
   color:$accent-text;
 }
+
 body{
   color:#545454;
   -webkit-user-select:none;
@@ -25,24 +26,30 @@ body{
   -ms-user-select:none;
   user-select:none;
 }
+
 .errorMsg{
   color: red;
   font-size: .9rem;
 }
+
 .requiredMsg{
   color:$primary-color;
   font-size:.9rem;
 }
+
 .margin-top-prop {
   margin-top:-15px !important;
 }
+
 .marginAuto{
   margin:auto !important;
   padding:auto !important;
 }
+
 .mdl-textfield{
   width:90% !important;
 }
+
 @media only screen and (max-width:768px) {
 // Bootstrap-4 css over-ride css
 label
@@ -88,7 +95,14 @@ $trans-bg:transparent;
 {
   background: $trans-bg;
 }
-
+// mdl-badge:after
+.mdl-badge:after
+{
+  top:-16px !important;
+  font-size:11px !important;
+  width:18px !important;
+  height:18px !important;
+}
 // Bootstrap-4 Classes not working with material css lite
 /*
 $s05rem:0.5rem;
@@ -113,4 +127,3 @@ $s3rem:3rem;
 */
 }
 //@import url('/app/home/forms/forms.component.css');
-

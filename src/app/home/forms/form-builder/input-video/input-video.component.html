@@ -4,53 +4,93 @@
   }
   .file_input_div {
   margin: auto;
-  width: 250px;
-  height: 40px;
   }
   .file_input {
   float: left;
   }
   #file_input_text_div {
-  width: 200px;
   margin-top: -8px;
   margin-left: 5px;
   }
   .none {
     display: none;
   }
-  img{
-    width: 40%;
-    height: auto;
-    margin: auto;
+  p {
+    font-size:16px;
+  }
+  .img {
+    position:absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width:100%;
+  }
+  .img-name {
+    position:absolute;
+    bottom:0;
+    right:0;
+    left:0;
+    margin:0 auto;
+    background:rgba(0,0,0,0.6);
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+  }
+  .img-cross
+  {
+    position:absolute;
+    top:-5px;
+    right:-5px;
   }
 </style>
 <div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--3-col">{{funID(id)}} . {{json.name}}
-    <span  *ngIf="json.required" class=" requiredMsg"><b> * </b> </span>
+  <div class="mdl-cell mdl-cell--10-col">
+    <p>
+      <span class="d-inline-block pt-3">{{funID(id)}} . {{json.name}}</span>
+      <span *ngIf="json.required" class="requiredMsg d-inline-block"><b>*</b></span>
+      <span *ngIf="json.helptext" class="mdl-badge d-inline-block" data-badge="i" id="Tsample{{funID(id)}}"></span>
+      <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float-right">
+        <i class="material-icons">videocam</i>
+        <input id="file_input_file101{{funID(id)}}" type="file" class="none" accept="video/*" capture="camcorder" (change)="getVal($event);"/>
+      </label>
+    </p>
   </div>
+  
+  
+  <!--
   <div class="mdl-cell mdl-cell--7-col">
-    <span  *ngIf="json.helptext" style="float: right" class="mdl-badge" data-badge="i" id="Tsample{{funID(id)}}"  ></span>
     <div class="file_input_div m-0">
       <div class="file_input">
-        <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-          <i class="material-icons">videocam</i>
-          <input id="file_input_file101{{funID(id)}}"  type="file" class="none" accept="video/*" capture="camcorder"  (change)="getVal($event);"/>
-        </label>
         <div *ngIf="name" style="float: right">
           <i class="material-icons" style="float: right; cursor: pointer;" (click)="deleteFile()">clear</i>
         </div>
-        <br /><br />
-        <video *ngIf="url" width="230vbh" height="140vbh" controls style="margin-left:-0px !important">
-          <source [src]="url" >
-          Browser does not support the video tag.
-        </video>
-        <div *ngIf="name" style="float: right; margin: auto;">
-          {{name}}
-        </div>
-        <br>
+        <video *ngIf="url" width="230vbh" height="140vbh" controls style="margin-left:-0px !important"><source [src]="url" >Browser does not support the video tag.</video>
+        <div *ngIf="name" style="float: right; margin: auto;">{{name}}</div>
       </div>
     </div>
   </div>
+-->
+  
+  
+  <div class="mdl-cell mdl-cell--10-col d-inline-block mt-0 mb-0" style="min-height:150px;">
+    <div style="position:relative;height:100%;">
+      <!--width="230vbh" height="140vbh" --><video *ngIf="url" controls class="img" alt="Upload Image" style="border:1px solid #ddd;line-height:800%;text-align:center;background:rgba(0,0,0,0.04);"><source [src]="url" >Browser does not support the video tag.</video>
+      <div *ngIf="name" class="img-name">{{name}}</div>
+      <div *ngIf="name" class="img-cross" style="border:1px solid #ccc;border-radius:30px;background:#000;color:#fff;font-size:0px;">
+        <i class="material-icons" (click)="deleteFile()">clear</i>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <span *ngIf='json.errorMsg' class="mdl-chip  margin-top-prop">
       <span class="mdl-chip__text errorMsg"><b> # {{json.errorMsg}} </b> </span>
   </span>
